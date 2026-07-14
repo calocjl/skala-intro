@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKALA - SK AI 리더 아카데미</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.98);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .code-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d73a49;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .syntax-keyword { color: #ff79c6; }
+        .syntax-string { color: #f1fa8c; }
+        .syntax-comment { color: #6272a4; }
+        .syntax-function { color: #50fa7b; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">SKALA</div>
+            <nav>
+                <a href="#about">프로그램 소개</a>
+                <a href="#features">특징</a>
+                <a href="#curriculum">커리큘럼</a>
+                <a href="#support">지원 기관</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>SKALA에 오신 것을 환영합니다! 🚀</h1>
+            <p>SK에서 주관하는 AI 리더 아카데미 - 취업 연계형 5개월 교육 프로그램</p>
+            <p style="font-size: 0.95rem; color: #888;">고용노동부 · 대한상공회의소 지원</p>
+            <a href="#about" class="btn">프로그램 알아보기</a>
+            <a href="#curriculum" class="btn">커리큘럼 보기</a>
+        </section>
+
+        <section id="features" class="features">
+            <div class="feature-card">
+                <h3>� 취업 연계 프로그램</h3>
+                <p>5개월의 집중 교육을 통해 AI 분야 실무 역량을 갖추고 기업 취업으로 이어지는 프로그램입니다.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🤖 AI 기술 중심 교육</h3>
+                <p>머신러닝, 딥러닝, 데이터 분석 등 현업에서 요구하는 AI 기술을 실무 중심으로 학습합니다.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>👨‍💼 산업 전문가 강의</h3>
+                <p>SK와 협력사의 AI 분야 전문가로부터 최신 트렌드와 실무 사례를 직접 배울 수 있습니다.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🏆 정부 지원 프로그램</h3>
+                <p>고용노동부와 대한상공회의소가 지원하여 모든 학생이 동등한 기회를 갖고 참여할 수 있습니다.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎓 실무 프로젝트 경험</h3>
+                <p>교과 과정 중 실제 기업 프로젝트에 참여하여 포트폴리오를 완성할 수 있습니다.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🌟 커리어 개발 지원</h3>
+                <p>교육 과정 중 및 수료 후 취업 지원, 멘토링, 네트워킹 기회를 제공합니다.</p>
+            </div>
+        </section>
+
+        <section id="about" class="code-section">
+            <h2>SKALA 프로그램 소개</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                <strong>SKALA(SK AI Leader Academy)</strong>는 SK에서 주관하고 고용노동부, 대한상공회의소가 지원하는 
+                <strong>AI 인재 양성 교육 프로그램</strong>입니다.
+            </p>
+
+            <h3>📋 프로그램 개요</h3>
+            <ul style="margin-left: 1.5rem; line-height: 2.2;">
+                <li><strong>교육 기간:</strong> 5개월 집중 교육</li>
+                <li><strong>대상:</strong> AI 분야 진출을 희망하는 취업 준비자</li>
+                <li><strong>교육 형식:</strong> 이론 + 실무 프로젝트 중심</li>
+                <li><strong>취업 연계:</strong> 수료 후 SK 및 협력사 취업 기회</li>
+                <li><strong>지원 기관:</strong> 고용노동부, 대한상공회의소</li>
+            </ul>
+
+            <div class="highlight" style="margin-top: 2rem;">
+                <strong>🎯 SKALA의 목표:</strong> 
+                AI 시대에 필요한 인재를 양성하고, 구직자에게 안정적인 취업 기회를 제공하며, 
+                기업에는 실무 역량을 갖춘 인재를 공급합니다.
+            </div>
+        </section>
+
+        <section id="curriculum" class="code-section">
+            <h2>SKALA 커리큘럼</h2>
+            <p style="margin-bottom: 1.5rem;">5개월 동안 체계적으로 AI 기술을 습득합니다.</p>
+
+            <div class="curriculum-timeline">
+                <div class="timeline-item">
+                    <h3>📚 1개월: 기초 다지기</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Python 프로그래밍 기초</li>
+                        <li>데이터 분석 기초 (Pandas, NumPy)</li>
+                        <li>데이터 시각화 (Matplotlib, Seaborn)</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>🤖 2개월: 머신러닝</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>머신러닝 개념 및 알고리즘</li>
+                        <li>지도학습 (Regression, Classification)</li>
+                        <li>비지도학습 (Clustering, Dimensionality Reduction)</li>
+                        <li>모델 평가 및 최적화</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>🧠 3개월: 딥러닝</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>신경망 기초</li>
+                        <li>CNN (Convolutional Neural Networks)</li>
+                        <li>RNN/LSTM (순환 신경망)</li>
+                        <li>Transformer 및 최신 기술</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>🚀 4-5개월: 프로젝트 & 취업 준비</h3>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>실무 프로젝트 진행</li>
+                        <li>포트폴리오 작성</li>
+                        <li>면접 및 기술 스킬 강화</li>
+                        <li>기업 연계 채용 지원</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="support" class="code-section">
+            <h2>지원 기관 및 혜택</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                <div class="highlight" style="border-left-color: #667eea;">
+                    <strong>🏛️ 고용노동부</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+                        국가 차원의 AI 인재 양성 지원 및 청년 취업 연계 정책
+                    </p>
+                </div>
+
+                <div class="highlight" style="border-left-color: #764ba2;">
+                    <strong>🏢 대한상공회의소</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+                        기업 네트워크 구축 및 취업 기회 제공
+                    </p>
+                </div>
+
+                <div class="highlight" style="border-left-color: #50a7ff;">
+                    <strong>🏭 SK 및 협력사</strong>
+                    <p style="margin-top: 0.5rem; font-size: 0.95rem;">
+                        실무 프로젝트 기회 및 취업 연계
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">✨ SKALA 수료자 혜택</h3>
+            <ul style="margin-left: 1.5rem; line-height: 2.2;">
+                <li><strong>취업 기회:</strong> SK 및 협력사 우선 채용</li>
+                <li><strong>자격증 지원:</strong> 관련 자격증 취득 지원</li>
+                <li><strong>지속 교육:</strong> 수료 후 커리어 개발 프로그램</li>
+                <li><strong>네트워크:</strong> 동료 및 업계 전문가와의 네트워킹</li>
+                <li><strong>경력 개발:</strong> 멘토링 및 경력 상담</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 SK AI 리더 아카데미 SKALA | 고용노동부 · 대한상공회의소 지원</p>
+        <p>AI 시대의 리더를 양성합니다! 🚀</p>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
